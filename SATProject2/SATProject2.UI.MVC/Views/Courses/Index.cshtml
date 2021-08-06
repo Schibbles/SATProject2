@@ -3,61 +3,97 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="templatemo-container">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 black-bg left-container">
+        <h1 class="logo-left hidden-xs margin-bottom-60">Black</h1>
+        <div class="tm-left-inner-container">
+            <ul class="nav nav-stacked templatemo-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                    <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                    <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
+                    <li>@Html.ActionLink("Enrollments", "Index", "Enrollments")</li>
+                    <li>@Html.ActionLink("Scheduled Classes", "Index", "ScheduledClasses")</li>
+                    <li>@Html.ActionLink("Students", "Index", "Students")</li>
+                    <li>@Html.ActionLink("Student Statuses", "Index", "StudentStatus")</li>
+                }
+                @if (Request.IsAuthenticated && User.IsInRole("Scheduling"))
+                {
+                <li>@Html.ActionLink("Enrollments", "Index", "Enrollments")</li>
+                <li>@Html.ActionLink("Scheduled Classes", "Index", "ScheduledClasses")</li>
+                <li>@Html.ActionLink("Students", "Index", "Students")</li>
+                }
+                @Html.Partial("_LoginPartial")
+            </ul>
+        </div>
+    </div> <!-- left section -->
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 white-bg right-container">
+        <h1 class="logo-right hidden-xs margin-bottom-60">White</h1>
+        <div class="tm-right-inner-container">
+            
 
-<h2>Index</h2>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreditHours)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Curriculum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreditHours)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Curriculum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Notes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CoursesId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CoursesId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CoursesId })
-        </td>
-    </tr>
-}
+            <h1 class="templatemo-header">Courses</h1>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourseName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourseDescription)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreditHours)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Curriculum)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Notes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </th>
+                    <th></th>
+                </tr>
 
-</table>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourseName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourseDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreditHours)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Curriculum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Notes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsActive)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.CoursesId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.CoursesId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.CoursesId })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

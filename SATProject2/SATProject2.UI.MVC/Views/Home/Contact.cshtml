@@ -13,11 +13,24 @@
             <div class="tm-left-inner-container">
                 <ul class="nav nav-stacked templatemo-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li><a href="products.html"><i class="fa fa-shopping-cart fa-medium"></i>Products</a></li>
-                    <li><a href="services.html"><i class="fa fa-send-o fa-medium"></i>Services</a></li>
-                    <li><a href="testimonials.html"><i class="fa fa-comments-o fa-medium"></i>Testimonials</a></li>
-                    <li><a href="about.html"><i class="fa fa-gears fa-medium"></i>About Us</a></li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                        <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
+                        <li>@Html.ActionLink("Enrollments", "Index", "Enrollments")</li>
+                        <li>@Html.ActionLink("Scheduled Classes", "Index", "ScheduledClasses")</li>
+                        <li>@Html.ActionLink("Students", "Index", "Students")</li>
+                        <li>@Html.ActionLink("Student Statuses", "Index", "StudentStatus")</li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("Scheduling"))
+                    {
+                    <li>@Html.ActionLink("Enrollments", "Index", "Enrollments")</li>
+                    <li>@Html.ActionLink("Scheduled Classes", "Index", "ScheduledClasses")</li>
+                    <li>@Html.ActionLink("Students", "Index", "Students")</li>
+                    }
+                    @Html.Partial("_LoginPartial")
                 </ul>
             </div>
         </div> <!-- left section -->

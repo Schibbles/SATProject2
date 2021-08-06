@@ -58,6 +58,7 @@ namespace SATProject2.DATA.EF
     [MetadataType(typeof(StudentMetadata))]
     public partial class Student
     {
+        [Display(Name = "Student Name")]
         public string FullName
         {
             get { return FirstName + " " + LastName; }
